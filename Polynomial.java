@@ -9,12 +9,18 @@ public class Polynomial {
         coefficients = coeff;
     }
 
+    private double getCoeff(int i) {
+        if (i >= coefficients.length)
+            return 0;
+        return coefficients[i];
+    }
+
     public Polynomial add(Polynomial poly) {
         int size = Math.max(coefficients.length, poly.coefficients.length);
         Polynomial result = new Polynomial(new double[size]);
 
         for (int i = 0; i < size; i++) {
-            result.coefficients[i] = coefficients[i] + poly.coefficients[i];
+            result.coefficients[i] = getCoeff(i) + poly.getCoeff(i);
         }
 
         return result;
@@ -23,7 +29,7 @@ public class Polynomial {
     public double evaluate(double x) {
         double cur = 1, result = 0;
         for (int i = 0; i < coefficients.length; i++) {
-            result += cur * coefficients[i];
+            result += cur * getCoeff(i);
             cur *= x;
         }
         return result;
