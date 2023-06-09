@@ -1,22 +1,74 @@
+import java.io.File;
+import java.util.Scanner;
+
 public class Driver {
-    public static void main(String[] args) {
+    /*
+     * Methods to test:
+     * Constructor 1
+     * Constructor 2
+     * Constructor 3
+     * add()
+     * evaluate()
+     * hasRoot()
+     * simpleMultiply()
+     * multiply()
+     * sortByExp()
+     * saveToFile()
+     */
+
+    /* Ask:
+     * what happens for null values?
+     * is the resulting polynomial sorted?
+     * does it return the desired result?
+     */
+
+    /* Fix:
+     * x1 should become x
+     */
+
+    private static void testNull() throws Exception {
         Polynomial p = new Polynomial();
+        Polynomial q = new Polynomial();
+        Polynomial f = new Polynomial(new double[]{1, 2}, new int[]{1, 0});
+        Polynomial g = new Polynomial(new double[]{5, 2, 4, 5, 2, 3, 2}, new int[]{6, 2, 5, 4, 1, 2, 0});
+        System.out.println(g.getString());
+        System.out.println(p.getString());
+        System.out.println(p.add(q).getString());
+        System.out.println(p.add(f).getString());
+        System.out.println(f.add(p).getString());
+        System.out.println(p.evaluate(-10.1));
+        System.out.println(p.hasRoot(0));
+        System.out.println(p.hasRoot(1));
+        System.out.println(p.multiply(q).getString());
+        System.out.println(p.multiply(f).getString());
+        System.out.println(f.multiply(p).getString());
 
-        System.out.println(p.evaluate(3));
-        double[] c1 = {6, 0, 0, 5};
-        Polynomial p1 = new Polynomial(c1);
+        p.sortByExp();
+        f.sortByExp();
+        p.saveToFile("p_file");
+        f.saveToFile("f_file");
+    }
 
-        double[] c2 = {0, -2, 0, 0, -9};
-        Polynomial p2 = new Polynomial(c2);
+    private static void testFiles() throws Exception {
+        for (int i = 1; i <= 5; i++) {
+            File f = new File("Test Files/t"+i+".txt");
+            Polynomial p = new Polynomial(f);
+            System.out.println(p.getString());
+            p.saveToFile(i+".txt");
+        }
+    }
 
-        Polynomial s = p1.add(p2);
-
-        System.out.println("s(0.1) = " + s.evaluate(0.1));
-        
-        if(s.hasRoot(1))
-            System.out.println("1 is a root of s");
-        else
-            System.out.println("1 is not a root of s");
-
+    private static void testCalculations() {
+        Polynomial p1 = new Polynomial(new double[]{1, 2, 4}, new int[]{1, 2, 0});
+        System.out.println(p1.getString());
+        for (int i = 0; i < 2; i++) {
+            p1 = p1.multiply(p1);
+        }
+        System.out.println(p1.getString());
+    }
+    public static void main(String[] args) throws Exception {
+        // testNull();
+        // testFiles();
+        testCalculations();
     }
 }
