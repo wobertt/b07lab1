@@ -1,31 +1,6 @@
 import java.io.File;
-import java.util.Scanner;
 
 public class Driver {
-    /*
-     * Methods to test:
-     * Constructor 1
-     * Constructor 2
-     * Constructor 3
-     * add()
-     * evaluate()
-     * hasRoot()
-     * simpleMultiply()
-     * multiply()
-     * sortByExp()
-     * saveToFile()
-     */
-
-    /* Ask:
-     * what happens for null values?
-     * is the resulting polynomial sorted?
-     * does it return the desired result?
-     */
-
-    /* Fix:
-     * x1 should become x
-     */
-
     private static void testNull() throws Exception {
         Polynomial p = new Polynomial();
         Polynomial q = new Polynomial();
@@ -67,8 +42,8 @@ public class Driver {
         System.out.println(p1.getString());
     }
     public static void main(String[] args) throws Exception {
-        // testNull();
-        // testFiles();
+        testNull();
+        testFiles();
         testCalculations();
     }
 }
